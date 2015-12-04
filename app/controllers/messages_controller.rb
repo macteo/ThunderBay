@@ -1,11 +1,11 @@
 class MessagesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :set_message, only: [:show, :edit, :update, :destroy, :red, :received]
-  
+
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    @messages = Message.all.order('id DESC').limit(100)
   end
 
   # GET /messages/1
@@ -64,7 +64,7 @@ class MessagesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def red
     @message.red = true
     respond_to do |format|
@@ -77,7 +77,7 @@ class MessagesController < ApplicationController
       end
     end
   end
-  
+
   def received
     @message.received = true
     respond_to do |format|

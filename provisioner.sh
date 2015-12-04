@@ -1,9 +1,8 @@
 sudo apt-get update
 sudo apt-get -y upgrade
-# sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-# sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 
-sudo apt-get -y install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev postgresql libpq-dev
+
+sudo apt-get -y install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev postgresql-9.4 postgresql-client-9.4 postgresql-server-dev-9.4 libpq-dev
 
 sudo locale-gen UTF-8
 
@@ -33,14 +32,9 @@ rbenv rehash
 
 wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
-sudo locale-gen UTF-8
-
-sudo su - postgres
- psql
-create role vagrant with createdb login password '';
-\q
-exit
+sudo -u postgres psql -c "create role vagrant with createdb login password '';"
 
 cd /vagrant
 bundle update
+rake db:setup
 rake db:migrate
