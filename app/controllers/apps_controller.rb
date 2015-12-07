@@ -24,7 +24,7 @@ class AppsController < ApplicationController
   # POST /apps
   # POST /apps.json
   def create
-    if params[:app][:certificate] 
+    if params[:app][:certificate]
       p12_cert_path = 'uploads/' + params[:app][:certificate].original_filename
       File.open(p12_cert_path, "wb") do |f|
         f.write(params['app']['certificate'].tempfile.read)
@@ -41,12 +41,12 @@ class AppsController < ApplicationController
           info = certificate.match(/UID=(.+)\/CN=/)
           if info
             key = info[0].gsub!("UID=", "").gsub!("/CN=", "") if info
-          else 
+          else
             "Failed extracting informations"
             redirect_to new_app_path
             return
           end
-        else 
+        else
           "Failed converting Certificate"
           redirect_to new_app_path
           return
@@ -61,18 +61,18 @@ class AppsController < ApplicationController
       return
     end
     identifier = Digest::SHA1.hexdigest('#acapulco' + Time.now.to_s + '$-lldfghsagsdwpa.K099123##')
-  
+
     environment = "production"
     if params[:app][:sandbox] == "1"
       environment = "sandbox"
     end
-    
+
     @app = App.new(:key => key, :certificate => certificate, :identifier => identifier[0..15], :environment => environment)
 
     respond_to do |format|
       if @app.save
         format.html { redirect_to @app, notice: 'App was successfully created.' }
-        format.json { render :show, status: :created, location: @app }
+        format.json { render :show, status: :created, re: @app }
       else
         format.html { render :new }
         format.json { render json: @app.errors, status: :unprocessable_entity }

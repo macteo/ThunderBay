@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203082528) do
+ActiveRecord::Schema.define(version: 20151207150034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,19 @@ ActiveRecord::Schema.define(version: 20151203082528) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string   "type"
+    t.string   "subtype"
+    t.jsonb    "payload"
+    t.datetime "timestamp"
+    t.string   "uuid"
+    t.integer  "user_id"
+    t.string   "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "app_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string   "receiver_id"
     t.integer  "sender_id"
@@ -57,6 +70,69 @@ ActiveRecord::Schema.define(version: 20151203082528) do
     t.string   "sound"
     t.integer  "content_available"
     t.jsonb    "payload"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "venue_id"
+    t.integer  "role"
+    t.text     "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string   "uuid"
+    t.integer  "major"
+    t.integer  "minor"
+    t.float    "lat"
+    t.float    "lon"
+    t.float    "radius"
+    t.integer  "venue_id"
+    t.string   "name"
+    t.text     "note"
+    t.string   "identifier"
+    t.integer  "enter_trigger_id"
+    t.integer  "exit_trigger_id"
+    t.integer  "range_trigger_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "behavior"
+    t.integer  "type"
+  end
+
+  create_table "triggers", force: :cascade do |t|
+    t.string   "url"
+    t.string   "name"
+    t.jsonb    "payload"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "type"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "venues", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

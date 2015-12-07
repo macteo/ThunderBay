@@ -2,9 +2,9 @@ require 'houston'
 
 class Message < ActiveRecord::Base
   belongs_to :device, :foreign_key => "receiver_id"
-  
+
   after_create :sendPush
-  
+
   def sendPush
     if self.device.app.sandbox
       apn = Houston::Client.development
@@ -14,27 +14,42 @@ class Message < ActiveRecord::Base
     apn.certificate = self.device.app.certificate
     token = self.device.token
     notification = Houston::Notification.new(device: token)
-    notification.alert = self.title
-    notification.badge = 0
+
+    if !self.title.blank?
+      notification.alert = self.title
+    end
+
+    #notification.badge = 0
     if self.badge?
       notification.badge = self.badge
     end
-    
+
     if !self.sound.blank?
       notification.sound = self.sound
     end
 
-    # notification.category = "INVITE_CATEGORY"
-    notification.content_available = true
-    
-    if !self.url.blank? 
-       notification.custom_data = {id: "#{self.id.to_s}", url: self.url }
-    else
-       notification.custom_data = {id: "#{self.id.to_s}" }   
+    if !self.category.blank?
+      notification.category = self.category
     end
 
+    if self.content_available == 1
+      notification.content_available = 1
+    end
+
+    if !self.url.blank?
+       custom_data = {id: "#{self.id.to_s}", url: self.url }
+    else
+       custom_data = {id: "#{self.id.to_s}" }
+    end
+
+    if !self.payload.blank?
+      custom_data = custom_data.merge(self.payload)
+    end
+
+    notification.custom_data = custom_data
+
     apn.push(notification)
-    
+
     self.sent = 1
     self.save
   end

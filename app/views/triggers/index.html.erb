@@ -1,0 +1,31 @@
+<h1>Listing Triggers</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Url</th>
+      <th>Name</th>
+      <th>Payload</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @triggers.each do |trigger| %>
+      <tr>
+        <td><%= trigger.type %></td>
+        <td><%= trigger.url %></td>
+        <td><%= trigger.name %></td>
+        <td><%= trigger.payload %></td>
+        <td><%= link_to 'Show', trigger, class: "btn btn-default"  %></td>
+        <td><%= link_to 'Edit', edit_trigger_path(trigger), class: "btn btn-default"  %></td>
+        <td><%= link_to 'Destroy', trigger, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trigger', new_trigger_path %>

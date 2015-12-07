@@ -12,6 +12,7 @@ gem 'puma'
 gem 'haml'
 gem 'houston'
 gem 'sidekiq'
+gem 'devise'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

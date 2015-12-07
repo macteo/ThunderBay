@@ -1,0 +1,49 @@
+<%= form_for(@event) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :type %><br>
+    <%= f.select :type, Event.types.to_a.map { |w,t| [w.humanize, w] }, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :subtype %><br>
+    <%= f.select :subtype, Event.subtypes.to_a.map { |w,t| [w.humanize, w] }, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :payload %><br>
+    <%= f.text_area :payload, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :timestamp %><br>
+    <%= f.datetime_select :timestamp, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :uuid %><br>
+    <%= f.text_field :uuid, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :user_id %><br>
+    <%= f.collection_select :user_id, User.all, :id, :email, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :app_id %><br>
+    <%= f.collection_select :app_id, App.all, :identifier, :key, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :attachment %><br>
+    <%= f.text_field :attachment, :class => "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Save", :class => "btn btn-primary" %>
+  </div>
+<% end %>
