@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :regions
   resources :venues
   devise_for :users
-  # resources :users
+  resources :users
+  
   resources :apps do
     resources :devices do
       member do

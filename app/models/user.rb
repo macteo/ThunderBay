@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :profiles
   has_many :events
 
+  mount_uploader :image, ImageUploader
+
   before_create :create_token
 
   def create_token
