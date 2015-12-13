@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 ruby '2.2.3'
 gem 'rails', '4.2.5'
 gem 'sass-rails', '~> 5.0'
@@ -20,6 +20,7 @@ group :development, :test do
 end
 gem 'bootstrap-sass'
 gem 'high_voltage'
+gem 'websocket-rails'
 group :development do
   gem 'better_errors'
   gem 'quiet_assets'

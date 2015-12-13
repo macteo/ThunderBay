@@ -16,9 +16,9 @@
         <td><%= region.identifier %></td>
         <td><%= region.venue ? region.venue.name : "" %></td>
         <td><%= region.type %></td>
-        <td><%= link_to 'Show', region, class: "btn btn-default"  %></td>
-        <td><%= link_to 'Edit', edit_region_path(region), class: "btn btn-default"  %></td>
-        <td><%= link_to 'Destroy', region, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"  %></td>
+        <td><%= link_to 'Show', region, class: "btn btn-default" %></td>
+        <td><%= link_to 'Edit', edit_region_path(region), class: "btn btn-default" %></td>
+        <td><%= link_to 'Destroy', region, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

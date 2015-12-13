@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -6,4 +8,10 @@ class User < ActiveRecord::Base
 
   has_many :profiles
   has_many :events
+
+  before_create :create_token
+
+  def create_token
+    self.token = SecureRandom.hex
+  end
 end
