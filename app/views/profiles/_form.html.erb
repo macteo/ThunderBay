@@ -24,6 +24,10 @@
     <%= f.select :role, Profile.roles.to_a.map { |w,t| [w.humanize, w] } %>
   </div>
   <div class="form-group">
+    <%= f.label :inside %><br>
+    <%= f.check_box :inside, :class => "form-control" %>
+  </div>
+  <div class="form-group">
     <%= f.label :note %><br>
     <%= f.text_area :note, :class => "form-control" %>
   </div>

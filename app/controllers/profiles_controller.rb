@@ -4,7 +4,20 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    if params[:user]
+      user = User.where(:token => params[:user]).first
+      if user
+        @profiles = Profile.where(:user_id => user.id)
+      end
+    elsif params[:venue_id]
+      if params[:inside]
+        @profiles = Profile.where(:venue_id => params[:venue_id], :inside => params[:inside])
+      else
+        @profiles = Profile.where(:venue_id => params[:venue_id])
+      end
+    else
+      @profiles = Profile.all
+    end
   end
 
   # GET /profiles/1
@@ -69,6 +82,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:user_id, :venue_id, :role, :note)
+      params.require(:profile).permit(:user_id, :venue_id, :role, :note, :inside)
     end
 end

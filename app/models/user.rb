@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :profiles
   has_many :events
+  has_many :devices
 
   validates :name, presence: true
   validates :email, presence: true
@@ -21,6 +22,12 @@ class User < ActiveRecord::Base
   def create_token
     if self.token.blank?
       self.token = SecureRandom.hex
+    end
+  end
+
+  def send_goodbye_notification
+    self.devices.each do |device|
+      Message.create(:receiver_id => device.id, :title => "Arrivederci")
     end
   end
 end

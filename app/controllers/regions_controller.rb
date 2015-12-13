@@ -4,7 +4,11 @@ class RegionsController < ApplicationController
   # GET /regions
   # GET /regions.json
   def index
-    @regions = Region.all
+    if params[:venue_id]
+      @regions = Region.where(:venue_id => params[:venue_id])
+    else
+      @regions = Region.all
+    end
   end
 
   # GET /regions/1

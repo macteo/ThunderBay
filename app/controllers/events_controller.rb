@@ -4,7 +4,20 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if params[:user]
+      user = User.where(:token => params[:user]).first
+      if user
+        if params[:venue_id]
+          @events = Event.where(:user_id => user.id, :venue_id => params[:venue_id])
+        else
+          @events = Event.where(:user_id => user.id)
+        end
+      end
+    elsif params[:venue_id]
+      @events = Event.where(:venue_id => params[:venue_id])
+    else
+      @events = Event.all
+    end
   end
 
   # GET /events/1
@@ -25,7 +38,13 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    if !params["event"]["payload"].is_a?(String)
+      @event.payload = params["event"]["payload"].to_json
+    end
 
+    if params["event"]["timestamp"]
+      @event.timestamp = Time.at(params["event"]["timestamp"].to_f)
+    end
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -40,6 +59,13 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    if !params["event"]["payload"].is_a?(String)
+      @event.payload = params["event"]["payload"].to_json
+    end
+
+    if params["event"]["timestamp"]
+      @event.timestamp = Time.at(params["event"]["timestamp"].to_f)
+    end
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -69,6 +95,8 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:type, :subtype, :payload, :timestamp, :uuid, :user_id, :app_id, :attachment)
+      params.require(:event).permit(:type, :subtype, :payload, :timestamp, :uuid, :user_id, :user, :app_id, :app, :attachment, :venue_id, :region_id).tap do |whitelisted|
+        whitelisted[:payload] = params[:event][:payload]
+      end
     end
 end

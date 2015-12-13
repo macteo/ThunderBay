@@ -36,6 +36,16 @@
 </p>
 
 <p>
+  <strong>Region:</strong>
+  <%= @event.region ? @event.region.name : "" %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @event.venue ? @event.venue.name : "" %>
+</p>
+
+<p>
   <strong>Attachment:</strong>
   <%= @event.attachment %>
 </p>
