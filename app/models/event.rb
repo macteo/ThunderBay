@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   self.inheritance_column = :_type_disabled
 
   include Rails.application.routes.url_helpers
-    mount_uploader :attachment, AttachmentUploader
+    #mount_uploader :attachment, AttachmentUploader
 
     after_create :broadcast_event
 
