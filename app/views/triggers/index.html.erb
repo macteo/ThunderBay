@@ -7,7 +7,7 @@
       <th>Url</th>
       <th>Name</th>
       <th>Payload</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -18,9 +18,11 @@
         <td><%= trigger.url %></td>
         <td><%= trigger.name %></td>
         <td><%= trigger.payload %></td>
-        <td><%= link_to 'Show', trigger, class: "btn btn-default"  %></td>
-        <td><%= link_to 'Edit', edit_trigger_path(trigger), class: "btn btn-default"  %></td>
-        <td><%= link_to 'Destroy', trigger, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"  %></td>
+        <td>
+          <%= link_to 'Show', trigger, class: "btn btn-default"  %>
+          <%= link_to 'Edit', edit_trigger_path(trigger), class: "btn btn-default"  %>
+          <%= link_to 'Destroy', trigger, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"  %>
+        </td>
       </tr>
     <% end %>
   </tbody>

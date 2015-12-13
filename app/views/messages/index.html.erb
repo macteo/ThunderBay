@@ -24,9 +24,11 @@
         <td><% if message.sent then %><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><% end %></td>
         <td><% if message.received then %><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><% end %></td>
         <td><% if message.red then %><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><% end %></td>
-        <td><%= link_to 'Show', message, class: "btn btn-default" %>
-        <%= link_to 'Edit', edit_message_path(message), class: "btn btn-default" %>
-        <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", :style => "color:#fff !important;" %></td>
+        <td>
+          <%= link_to 'Show', message, class: "btn btn-default" %>
+          <%= link_to 'Edit', edit_message_path(message), class: "btn btn-default" %>
+          <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", :style => "color:#fff !important;" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

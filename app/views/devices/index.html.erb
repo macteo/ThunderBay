@@ -10,7 +10,7 @@
       <th>App</th>
       <th>Last access</th>
       <th>Locale</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -22,10 +22,12 @@
         <td><%= device.app.key %></td>
         <td><%= device.last_access %></td>
         <td><%= device.locale %></td>
-        <td><%= link_to 'Send Message', new_message_path(:receiver_id => device.identifier), class: "btn btn-primary" , :style => "color:#fff !important;" %></td>
-        <td><%= link_to 'Show', device, class: "btn btn-default" %></td>
-        <td><%= link_to 'Edit', edit_device_path(device), class: "btn btn-default" %></td>
-        <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", :style => "color:#fff !important;" %></td>
+        <td><%= link_to 'Send Message', new_message_path(:receiver_id => device.identifier), class: "btn btn-primary" %></td>
+        <td>
+          <%= link_to 'Show', device, class: "btn btn-default" %>
+          <%= link_to 'Edit', edit_device_path(device), class: "btn btn-default" %>
+          <%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>
