@@ -4,7 +4,7 @@ class TriggersController < ApplicationController
   # GET /triggers
   # GET /triggers.json
   def index
-    @triggers = Trigger.all
+    @triggers = Trigger.all.order('id ASC')
   end
 
   # GET /triggers/1

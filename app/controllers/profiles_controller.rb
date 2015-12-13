@@ -7,13 +7,13 @@ class ProfilesController < ApplicationController
     if params[:user]
       user = User.where(:token => params[:user]).first
       if user
-        @profiles = Profile.where(:user_id => user.id)
+        @profiles = Profile.where(:user_id => user.id).order('id ASC')
       end
     elsif params[:venue_id]
       if params[:inside]
-        @profiles = Profile.where(:venue_id => params[:venue_id], :inside => params[:inside])
+        @profiles = Profile.where(:venue_id => params[:venue_id], :inside => params[:inside]).order('id ASC')
       else
-        @profiles = Profile.where(:venue_id => params[:venue_id])
+        @profiles = Profile.where(:venue_id => params[:venue_id]).order('id ASC')
       end
     else
       @profiles = Profile.all

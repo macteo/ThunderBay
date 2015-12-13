@@ -8,15 +8,15 @@ class EventsController < ApplicationController
       user = User.where(:token => params[:user]).first
       if user
         if params[:venue_id]
-          @events = Event.where(:user_id => user.id, :venue_id => params[:venue_id])
+          @events = Event.where(:user_id => user.id, :venue_id => params[:venue_id]).order('timestamp DESC').limit(100)
         else
-          @events = Event.where(:user_id => user.id)
+          @events = Event.where(:user_id => user.id).order('timestamp DESC').limit(100)
         end
       end
     elsif params[:venue_id]
-      @events = Event.where(:venue_id => params[:venue_id])
+      @events = Event.where(:venue_id => params[:venue_id]).order('timestamp DESC').limit(100)
     else
-      @events = Event.all
+      @events = Event.all.order('timestamp DESC').limit(100)
     end
   end
 

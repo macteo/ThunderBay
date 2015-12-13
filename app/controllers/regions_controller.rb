@@ -5,9 +5,9 @@ class RegionsController < ApplicationController
   # GET /regions.json
   def index
     if params[:venue_id]
-      @regions = Region.where(:venue_id => params[:venue_id])
+      @regions = Region.where(:venue_id => params[:venue_id]).order('id ASC')
     else
-      @regions = Region.all
+      @regions = Region.all.order('id ASC')
     end
   end
 
