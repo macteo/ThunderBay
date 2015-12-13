@@ -61,6 +61,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def authenticate
+    @user = User.where(:email => user_params[:email]).first
+    respond_to do |format|
+      if @user && @user.valid_password?(user_params[:password])
+        format.html { redirect_to @user, notice: 'User exists.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { redirect_to "/", notice: 'Cannot authenticate' }
+        format.json { render json: '{"error":"Cannot authenticate"}', status: 401 }
+      end
+    end
+
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
@@ -69,6 +83,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:email, :image, :image_cache, :remove_image, :birthday, :name)
+    params.require(:user).permit(:email, :image, :image_cache, :remove_image, :birthday, :name, :password)
   end
 end

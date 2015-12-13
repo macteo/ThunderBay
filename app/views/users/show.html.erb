@@ -1,8 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <%= image_tag(@user.image.url, size: "50x50") %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
   <strong>Email:</strong>
   <%= @user.email %>
+</p>
+
+<p>
+  <strong>Birthday:</strong>
+  <%= @user.birthday %>
 </p>
 
 <p>

@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   resources :triggers
   resources :regions
   resources :venues
-  devise_for :users
-  resources :users
-  
+  # devise_for :users
+  resources :users do
+    collection do
+      post :authenticate, :format => :json
+    end
+  end
+
   resources :apps do
     resources :devices do
       member do

@@ -9,11 +9,20 @@ class User < ActiveRecord::Base
   has_many :profiles
   has_many :events
 
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :email, uniqueness: true
+
   mount_uploader :image, ImageUploader
+  mount_base64_uploader :image, ImageUploader
 
   before_create :create_token
 
   def create_token
-    self.token = SecureRandom.hex
+    if self.token.blank?
+      self.token = SecureRandom.hex
+    end
   end
 end
+
+# openssl base64 < file_path | tr -d '\n' | pbcopy
