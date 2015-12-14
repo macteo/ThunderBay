@@ -15,13 +15,13 @@ class Region < ActiveRecord::Base
   end
 
   def exit_trigger
-    if !self.exit_trigger.blank?
+    if !self.exit_trigger_id.blank?
       Trigger.find(self.exit_trigger_id)
     end
   end
 
   def range_trigger
-    if !self.range_trigger.blank?
+    if !self.range_trigger_id.blank?
       Trigger.find(self.range_trigger_id)
     end
   end
