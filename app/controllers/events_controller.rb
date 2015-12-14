@@ -95,7 +95,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:type, :subtype, :payload, :timestamp, :uuid, :user_id, :user, :app_id, :app, :attachment, :venue_id, :region_id).tap do |whitelisted|
+      params.require(:event).permit(:type, :subtype, :payload, :timestamp, :uuid, :user_id, :user, :app_id, :app, :attachment, :venue_id, :venue, :region, :region_id).tap do |whitelisted|
         whitelisted[:payload] = params[:event][:payload]
       end
     end

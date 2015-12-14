@@ -73,6 +73,6 @@ class RegionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def region_params
-      params.require(:region).permit(:uuid, :major, :minor, :lat, :lon, :radius, :venue_id, :name, :note, :identifier, :behavior, :enter_trigger_id, :exit_trigger_id, :range_trigger_id, :type)
+      params.require(:region).permit(:uuid, :major, :minor, :lat, :lon, :radius, :venue_id, :name, :note, :identifier, :behavior, :enter_trigger_id, :exit_trigger_id, :range_trigger_id, :type, :main)
     end
 end

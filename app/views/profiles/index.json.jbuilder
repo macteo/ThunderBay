@@ -7,4 +7,5 @@ json.array!(@profiles) do |profile|
     json.venue profile.venue
   end
   json.url profile_url(profile, format: :json)
+  json.items profile.items
 end

@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   #mount_uploader :attachment, AttachmentUploader
 
-  after_create :update_inside_status, if: Proc.new { |event| event.venue_id && event.user_id && event.type == "region" }
+  after_create :update_inside_status, if: Proc.new { |event| event.venue_id && event.user_id && event.type == "region" && event.region.main == true }
 
   after_create :broadcast_event
 
@@ -30,6 +30,14 @@ class Event < ActiveRecord::Base
 
     if app
       self.app_id = app.id
+    end
+  end
+
+  def region=(r)
+    region = Region.where(:identifier => r).first
+
+    if region
+      self.region_id = region.id
     end
   end
 

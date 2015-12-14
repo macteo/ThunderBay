@@ -5,7 +5,7 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>49FFDD96-34F7-41DB-92C7-3B5041D67A9D</UUID>
-        <nextObjectID>154</nextObjectID>
+        <nextObjectID>161</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -446,7 +446,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"json":"{\\"event\\":{\\"type\\":\\"region\\",\\"subtype\\":\\"enter\\",\\"uuid\\":\\"[{\\\\\\"data\\\\\\":{},\\\\\\"identifier\\\\\\":\\\\\\"com.hskrasek.PawExtensions.RandomUuidValue\\\\\\"}]\\",\\"user\\":\\"jhgjhgv\\",\\"app\\":\\"it.dimension.fashion\\",\\"timestamp\\":1450017192,\\"venue_id\\":1,\\"payload\\":{\\"key\\":\\"val\\"}}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"event\\":{\\"type\\":\\"region\\",\\"subtype\\":\\"enter\\",\\"uuid\\":\\"[{\\\\\\"data\\\\\\":{},\\\\\\"identifier\\\\\\":\\\\\\"com.hskrasek.PawExtensions.RandomUuidValue\\\\\\"}]\\",\\"user\\":\\"jhgjhgv\\",\\"region\\":\\"centro citt\\\\u00e0\\",\\"app\\":\\"it.dimension.fashion\\",\\"timestamp\\":1450017192,\\"venue_id\\":1,\\"payload\\":{\\"key\\":\\"val\\"}}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">1</attribute>
         <attribute name="name" type="string">new enter event</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z140"></relationship>
@@ -587,12 +587,12 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"json":"{\\"event\\":{\\"type\\":\\"region\\",\\"subtype\\":\\"exit\\",\\"uuid\\":\\"[{\\\\\\"data\\\\\\":{},\\\\\\"identifier\\\\\\":\\\\\\"com.hskrasek.PawExtensions.RandomUuidValue\\\\\\"}]\\",\\"user\\":\\"jhgjhgv\\",\\"app\\":\\"it.dimension.fashion\\",\\"timestamp\\":1450017192,\\"venue_id\\":1,\\"payload\\":{\\"key\\":\\"val\\"}}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"event\\":{\\"type\\":\\"region\\",\\"subtype\\":\\"exit\\",\\"uuid\\":\\"[{\\\\\\"data\\\\\\":{},\\\\\\"identifier\\\\\\":\\\\\\"com.hskrasek.PawExtensions.RandomUuidValue\\\\\\"}]\\",\\"user\\":\\"jhgjhgv\\",\\"region\\":\\"centro citt\\\\u00e0\\",\\"app\\":\\"it.dimension.fashion\\",\\"timestamp\\":1450017192,\\"venue_id\\":1,\\"payload\\":{\\"key\\":\\"val\\"}}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">2</attribute>
         <attribute name="name" type="string">new exit event</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z140"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z152 z154"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z154 z152"></relationship>
     </object>
     <object type="LMKEYVALUE" id="z154">
         <attribute name="value" type="string">application/json</attribute>
@@ -603,5 +603,86 @@
         <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z153"></relationship>
+    </object>
+    <object type="LMREQUESTGROUP" id="z155">
+        <attribute name="uuid" type="string">41F91FDF-5FC1-466B-8ACB-E452146A8577</attribute>
+        <attribute name="order" type="int64">5</attribute>
+        <attribute name="name" type="string">add item to user</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z157 z160"></relationship>
+        <relationship name="bodyparameters" type="0/0" destination="LMKEYVALUE"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE"></relationship>
+        <relationship name="urlparameters" type="0/0" destination="LMKEYVALUE"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z156">
+        <attribute name="value" type="string">application/json</attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string">Content-Type</attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z157"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z157">
+        <attribute name="uuid" type="string">2E9A70D1-83A0-494E-8126-83AB8015E77E</attribute>
+        <attribute name="url" type="string">http://127.0.0.1:3000/users/jhgjhgv/items/1</attribute>
+        <attribute name="storecookies" type="bool">0</attribute>
+        <attribute name="sendcookies" type="bool">0</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">POST</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string">add item</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z155"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z156 z158"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z158">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">1</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z157"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z159">
+        <attribute name="value" type="string">application/json</attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string">Content-Type</attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z160"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z160">
+        <attribute name="uuid" type="string">77F2261D-34D8-4FAE-A3C2-C94E132EBB3C</attribute>
+        <attribute name="url" type="string">http://127.0.0.1:3000/users/jhgjhgv/items/1</attribute>
+        <attribute name="storecookies" type="bool">0</attribute>
+        <attribute name="sendcookies" type="bool">0</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">DELETE</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="order" type="int64">1</attribute>
+        <attribute name="name" type="string">remove item</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z155"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z159 z161"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z161">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">1</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z160"></relationship>
     </object>
 </database>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user_from_token, only: [:add_item, :remove_item]
   # GET /users
   # GET /users.json
   def index
@@ -61,6 +61,39 @@ class UsersController < ApplicationController
     end
   end
 
+  def add_item
+    if !params["id"].blank?
+      item = Item.find(params["id"])
+      if item
+        @profile = Profile.where(:user_id => @user.id, :venue_id => item.venue_id).first
+        if @profile
+          @profile.items << item
+          @profile.save
+          #render json: @profile, status: 201
+          render "profile.json", status: :ok, location: @user
+          return
+        end
+      end
+    end
+    render json: '{"error":"Not found"}', status: 404
+  end
+
+  def remove_item
+    if !params["id"].blank?
+      item = Item.find(params["id"])
+      if item
+        @profile = Profile.where(:user_id => @user.id, :venue_id => item.venue_id).first
+        if @profile
+          @profile.items.delete(item)
+          @profile.save
+          render "profile.json", status: :ok, location: @user
+          return
+        end
+      end
+    end
+    render json: '{"error":"Not found"}', status: 404
+  end
+
   def authenticate
     @user = User.where(:email => user_params[:email]).first
     respond_to do |format|
@@ -79,6 +112,10 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_user_from_token
+    @user = User.where(:token => params[:token]).first
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

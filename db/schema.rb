@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213144637) do
+ActiveRecord::Schema.define(version: 20151214095424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,11 @@ ActiveRecord::Schema.define(version: 20151213144637) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "items_profiles", id: false, force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "profile_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string   "receiver_id"
     t.integer  "sender_id"
@@ -109,10 +114,11 @@ ActiveRecord::Schema.define(version: 20151213144637) do
     t.integer  "enter_trigger_id"
     t.integer  "exit_trigger_id"
     t.integer  "range_trigger_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "behavior"
     t.integer  "type"
+    t.boolean  "main",             default: false
   end
 
   create_table "triggers", force: :cascade do |t|

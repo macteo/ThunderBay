@@ -6,6 +6,7 @@
       <th>Identifier</th>
       <th>Venue</th>
       <th>Type</th>
+      <th>Main</th>
       <th></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
         <td><%= region.identifier %></td>
         <td><%= region.venue ? region.venue.name : "" %></td>
         <td><%= region.type %></td>
+        <td><%= region.main ? "Yes" : "" %></td>
         <td>
           <%= link_to 'Show', region, class: "btn btn-default" %>
           <%= link_to 'Edit', edit_region_path(region), class: "btn btn-default" %>
