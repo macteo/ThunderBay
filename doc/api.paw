@@ -61,9 +61,9 @@
         </metadata>
     </databaseInfo>
     <object type="LMREQUEST" id="z102">
-        <attribute name="body" type="string">[{"data":{"json":"{\\"device\\":{\\"identifier\\":\\"[{\\\\\\"data\\\\\\":{},\\\\\\"identifier\\\\\\":\\\\\\"com.hskrasek.PawExtensions.RandomUuidValue\\\\\\"}]\\",\\"token\\":\\"[{\\\\\\"data\\\\\\":{\\\\\\"arrayType\\\\\\":\\\\\\"lastNames\\\\\\"},\\\\\\"identifier\\\\\\":\\\\\\"com.commanigy.PawExtensions.NameRandomizerDynamicValue\\\\\\"}]\\",\\"lat\\":\\"\\",\\"lon\\":\\"\\",\\"locale\\":\\"en\\",\\"name\\":\\"Matteo's iPhone\\",\\"user\\":\\"jhgjhgv\\"}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"device\\":{\\"identifier\\":\\"[{\\\\\\"data\\\\\\":{},\\\\\\"identifier\\\\\\":\\\\\\"com.hskrasek.PawExtensions.RandomUuidValue\\\\\\"}]\\",\\"token\\":\\"[{\\\\\\"data\\\\\\":{\\\\\\"arrayType\\\\\\":\\\\\\"lastNames\\\\\\"},\\\\\\"identifier\\\\\\":\\\\\\"com.commanigy.PawExtensions.NameRandomizerDynamicValue\\\\\\"}]\\",\\"lat\\":\\"\\",\\"lon\\":\\"\\",\\"locale\\":\\"en\\",\\"name\\":\\"Paw's iPhone\\",\\"user\\":\\"e3b0775151f5a60b9be89ed7169ed219\\"}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">73C45230-1962-4E11-97E1-A0B7D3DAA372</attribute>
-        <attribute name="url" type="string">http://127.0.0.1:3000/apps/47d371ed17387cdc/devices.json</attribute>
+        <attribute name="url" type="string">https://thunderbay.herokuapp.com/apps/b0b766183abb0d45/devices.json</attribute>
         <attribute name="storecookies" type="bool">0</attribute>
         <attribute name="sendcookies" type="bool">0</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -74,7 +74,7 @@
         <attribute name="name" type="string">register device</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z117"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z106 z109"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z109 z106"></relationship>
     </object>
     <object type="LMENVIRONMENTDOMAIN" id="z103">
         <attribute name="uuid" type="string">F480AC64-4CEA-4005-8953-A842A69FDF3E</attribute>

@@ -45,6 +45,13 @@ class DevicesController < ApplicationController
       @device = Device.new(device_params)
     end
 
+    if !params[:user].blank?
+      @user = User.where(:token => params[:user]).first
+      if @user
+        @device.user_id = @user.id
+      end
+    end
+
     @device.app_id = app_id
     @device.last_access = Time.new
 

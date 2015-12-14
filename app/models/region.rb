@@ -10,19 +10,19 @@ class Region < ActiveRecord::Base
 
   def enter_trigger
     if !self.enter_trigger_id.blank?
-      Trigger.find(self.enter_trigger_id)
+      return Trigger.find(self.enter_trigger_id)
     end
   end
 
   def exit_trigger
     if !self.exit_trigger_id.blank?
-      Trigger.find(self.exit_trigger_id)
+      return Trigger.find(self.exit_trigger_id)
     end
   end
 
   def range_trigger
     if !self.range_trigger_id.blank?
-      Trigger.find(self.range_trigger_id)
+      return Trigger.find(self.range_trigger_id)
     end
   end
 end
