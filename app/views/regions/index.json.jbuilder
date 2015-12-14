@@ -1,5 +1,5 @@
 json.array!(@regions) do |region|
-  json.extract! region, :id, :identifier, :uuid, :major, :minor, :lat, :lon, :radius, :venue_id, :note
+  json.extract! region, :id, :identifier, :uuid, :major, :minor, :lat, :lon, :radius, :venue_id, :note, :behavior
   json.url region_url(region, format: :json)
   if region.enter_trigger_id
     json.enter_trigger region.enter_trigger
