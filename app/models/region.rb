@@ -1,6 +1,6 @@
 class Region < ActiveRecord::Base
-  enum type: [:beacon, :geofence]
-  enum behavior: [:monitor, :range]
+  enum type: [:Beacon, :Geofence]
+  enum behavior: [:Monitor, :Range]
 
   belongs_to :venue
   has_many :events
