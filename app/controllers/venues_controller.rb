@@ -1,10 +1,18 @@
 class VenuesController < ApplicationController
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_from_token, only: [:index]
 
   # GET /venues
   # GET /venues.json
   def index
-    @venues = Venue.all.order('id ASC')
+    if params[:user] # The user token
+      @venues = Array.new
+      @user.profiles.each do |profile|
+        @venues << profile.venue
+      end
+    else
+      @venues = Venue.all.order('id ASC')
+    end
   end
 
   # GET /venues/1
@@ -65,6 +73,10 @@ class VenuesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_venue
       @venue = Venue.find(params[:id])
+    end
+
+    def set_user_from_token
+      @user = User.where(:token => params[:user]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

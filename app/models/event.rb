@@ -4,11 +4,11 @@ class Event < ActiveRecord::Base
   belongs_to :region
   belongs_to :venue
 
-  enum type: {region: 'region', purchase: 'purchase', other: 'other'}
-  enum subtype: {nothing: 'nothing', enter: 'enter', exit: 'exit', range: 'range'}
-
   # To be able to use type as parameter
   self.inheritance_column = :_type_disabled
+
+  enum type: {region: 'region', purchase: 'purchase', other: 'other'}
+  enum subtype: {nothing: 'nothing', enter: 'enter', exit: 'exit', range: 'range'}
 
   include Rails.application.routes.url_helpers
   #mount_uploader :attachment, AttachmentUploader

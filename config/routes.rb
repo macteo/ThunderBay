@@ -12,8 +12,9 @@ Rails.application.routes.draw do
     end
   end
 
-  post "/users/:token/items/:id", to: 'users#add_item'
-  delete "/users/:token/items/:id", to: 'users#remove_item'
+  post "/users/:token/items/:id", to: 'users#add_item', :format => :json
+  put "/users/:token/image", to: 'users#update_image', :format => :json
+  delete "/users/:token/items/:id", to: 'users#remove_item', :format => :json
 
   resources :apps do
     resources :devices do
