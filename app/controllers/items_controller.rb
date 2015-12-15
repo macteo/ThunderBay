@@ -4,7 +4,11 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all.order('id ASC')
+    if params[:venue_id]
+      @items = Item.where(:venue_id => params[:venue_id]).order('id ASC')
+    else
+      @items = Item.all.order('id ASC')
+    end
   end
 
   # GET /items/1

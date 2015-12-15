@@ -81,8 +81,10 @@ class UsersController < ApplicationController
       if item
         @profile = Profile.where(:user_id => @user.id, :venue_id => item.venue_id).first
         if @profile
-          @profile.items << item
-          @profile.save
+          if @profile.items.where(:id => item.id).count == 0
+            @profile.items << item
+            @profile.save
+          end
           #render json: @profile, status: 201
           render "profile.json", status: :ok, location: @user
           return
