@@ -30,6 +30,12 @@ class User < ActiveRecord::Base
       Message.create(:receiver_id => device.id, :title => "Arrivederci")
     end
   end
+
+  def send_update_regions_notification
+    self.devices.each do |device|
+      Message.create(:receiver_id => device.id, :payload => '{"dicon_update_regions":true}', :content_available => 1)
+    end
+  end
 end
 
 # openssl base64 < file_path | tr -d '\n' | pbcopy

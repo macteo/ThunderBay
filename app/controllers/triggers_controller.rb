@@ -25,7 +25,9 @@ class TriggersController < ApplicationController
   # POST /triggers.json
   def create
     @trigger = Trigger.new(trigger_params)
-
+    if !params["trigger"]["payload"].is_a?(String)
+      @trigger.payload = params["trigger"]["payload"].to_json
+    end
     respond_to do |format|
       if @trigger.save
         format.html { redirect_to @trigger, notice: 'Trigger was successfully created.' }
@@ -69,6 +71,8 @@ class TriggersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trigger_params
-      params.require(:trigger).permit(:type, :url, :name, :payload)
+      params.require(:trigger).permit(:type, :url, :name, :payload).tap do |whitelisted|
+        whitelisted[:payload] = params[:trigger][:payload]
+      end
     end
 end

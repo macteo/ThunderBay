@@ -17,7 +17,7 @@
 
 <p>
   <strong>Payload:</strong>
-  <%= @trigger.payload %>
+  <%= @trigger.payload ? @trigger.payload.to_json : "" %>
 </p>
 
 <%= link_to 'Edit', edit_trigger_path(@trigger) %> |
