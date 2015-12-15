@@ -36,6 +36,12 @@ class User < ActiveRecord::Base
       Message.create(:receiver_id => device.id, :payload => '{"dicon_update_regions":true}', :content_available => 1)
     end
   end
+
+  def send_inside_status_change_notification(profile)
+    self.devices.each do |device|
+      Message.create(:receiver_id => device.id, :payload => "{\"inside_status_change\":#{profile.to_json}}", :content_available => 1)
+    end
+  end
 end
 
 # openssl base64 < file_path | tr -d '\n' | pbcopy

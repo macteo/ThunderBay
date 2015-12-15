@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Devices</h1>
 
 <table class="table table-striped">
@@ -8,8 +6,6 @@
       <th>Name</th>
       <th>Identifier</th>
       <th>App</th>
-      <th>Last access</th>
-      <th>Locale</th>
       <th></th>
     </tr>
   </thead>
@@ -20,9 +16,7 @@
         <td><%= device.name %></td>
         <td><%= device.identifier %></td>
         <td><%= device.app ? device.app.key : "" %></td>
-        <td><%= device.last_access %></td>
-        <td><%= device.locale %></td>
-        <td><%= link_to 'Send Message', new_message_path(:receiver_id => device.identifier), class: "btn btn-primary" %></td>
+        <td><%= link_to 'Send', new_message_path(:receiver_id => device.identifier), class: "btn btn-primary" %></td>
         <td>
           <%= link_to 'Show', device, class: "btn btn-default" %>
           <%= link_to 'Edit', edit_device_path(device), class: "btn btn-default" %>

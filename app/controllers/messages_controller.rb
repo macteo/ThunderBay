@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all.order('id DESC').limit(100)
+    @messages = Message.all.order('id DESC').limit(50)
   end
 
   # GET /messages/1

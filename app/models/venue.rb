@@ -7,4 +7,11 @@ class Venue < ActiveRecord::Base
   def channel_name
     return CGI.escape("#{id}-#{name}")
   end
+
+  def send_inside_status_change_notification(profile)
+    cashiers = self.profiles.where.not(role: 0)
+    cashiers.each do |cashier|
+      cashier.user.send_inside_status_change_notification(profile)
+    end
+  end
 end

@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   #mount_uploader :attachment, AttachmentUploader
 
-  after_create :update_inside_status, if: Proc.new { |event| event.venue_id && event.user_id && event.type == "region" && event.region.main == true }
+  after_create :update_inside_status, if: Proc.new { |event| event.region_id && event.user_id && event.type == "region" && event.region.main == true }
 
   after_create :broadcast_event
 
@@ -37,6 +37,9 @@ class Event < ActiveRecord::Base
     region = Region.where(:identifier => r).first
 
     if region
+      if region.venue_id
+        self.venue_id = region.venue_id
+      end
       self.region_id = region.id
     end
   end
@@ -47,12 +50,15 @@ class Event < ActiveRecord::Base
       if self.subtype == "enter"
         profile.inside = true
         profile.save
+        self.venue.send_inside_status_change_notification(profile)
         WebsocketRails[self.venue.channel_name].trigger("enter_event", socket_object)
       elsif self.subtype == "exit"
         profile.inside = false
         profile.save
+
+        self.venue.send_inside_status_change_notification(profile)
         WebsocketRails[self.venue.channel_name].trigger("exit_event", socket_object)
-        self.user.send_goodbye_notification
+        # self.user.send_goodbye_notification
       end
     end
   end

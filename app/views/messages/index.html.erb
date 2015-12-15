@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Messages</h1>
 
 <table class="table table-striped">
@@ -18,7 +16,7 @@
   <tbody>
     <% @messages.each do |message| %>
       <tr>
-        <td><%= message.device.name %></td>
+        <td><%= message.device ? message.device.name : "" %></td>
         <td><%= message.title %></td>
         <td><%= message.created_at %></td>
         <td><% if message.sent then %><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><% end %></td>

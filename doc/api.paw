@@ -446,7 +446,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"json":"{\\"event\\":{\\"type\\":\\"region\\",\\"subtype\\":\\"enter\\",\\"uuid\\":\\"[{\\\\\\"data\\\\\\":{},\\\\\\"identifier\\\\\\":\\\\\\"com.hskrasek.PawExtensions.RandomUuidValue\\\\\\"}]\\",\\"user\\":\\"jhgjhgv\\",\\"region\\":\\"centro citt\\\\u00e0\\",\\"app\\":\\"it.dimension.fashion\\",\\"timestamp\\":1450017192,\\"venue_id\\":1,\\"payload\\":{\\"key\\":\\"val\\"}}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"event\\":{\\"type\\":\\"region\\",\\"subtype\\":\\"enter\\",\\"uuid\\":\\"[{\\\\\\"data\\\\\\":{},\\\\\\"identifier\\\\\\":\\\\\\"com.hskrasek.PawExtensions.RandomUuidValue\\\\\\"}]\\",\\"user\\":\\"7f3dc90c30f0430b2937e517f17857a1\\",\\"region\\":\\"DICONos\\",\\"app\\":\\"it.dimension.proximity\\",\\"timestamp\\":1450017192,\\"payload\\":{\\"key\\":\\"val\\"}}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">1</attribute>
         <attribute name="name" type="string">new enter event</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z140"></relationship>

@@ -31,8 +31,14 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        @user = User.where(:email => user_params[:email]).first
+        if @user && @user.valid_password?(user_params[:password])
+          format.html { redirect_to @user, notice: 'User exists.' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :new }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
