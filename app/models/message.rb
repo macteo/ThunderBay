@@ -10,7 +10,7 @@ class Message < ActiveRecord::Base
   end
 
   def send_push
-    if self.sent == 1
+    if self.sent == true
       return
     end
     if self.device.app.sandbox
