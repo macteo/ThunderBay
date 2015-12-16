@@ -10,6 +10,9 @@ class Message < ActiveRecord::Base
   end
 
   def send_push
+    if self.sent == 1
+      return
+    end
     if self.device.app.sandbox
       apn = Houston::Client.development
     else
