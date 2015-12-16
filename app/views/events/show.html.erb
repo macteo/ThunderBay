@@ -1,0 +1,52 @@
+<p>
+  <strong>Type:</strong>
+  <%= @event.type %>
+</p>
+
+<p>
+  <strong>Subtype:</strong>
+  <%= @event.subtype %>
+</p>
+
+<p>
+  <strong>Payload:</strong>
+  <%= @event.payload %>
+</p>
+
+<p>
+  <strong>Timestamp:</strong>
+  <%= @event.timestamp %>
+</p>
+
+<p>
+  <strong>Uuid:</strong>
+  <%= @event.uuid %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @event.user ? @event.user.email : "" %>
+</p>
+
+<p>
+  <strong>App:</strong>
+  <%= @event.app ? @event.app.key : "" %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @event.region ? @event.region.name : "" %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @event.venue ? @event.venue.name : "" %>
+</p>
+
+<p>
+  <strong>Attachment:</strong>
+  <%= @event.attachment %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

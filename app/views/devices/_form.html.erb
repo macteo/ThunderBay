@@ -20,8 +20,12 @@
     <%= f.text_field :token, :class => "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :app_id %><br>
-    <%= f.number_field :app_id, :class => "form-control" %>
+    <%= f.label :user %><br>
+    <%= f.collection_select :user, User.all, :token, :email, :class => "form-control", :prompt => "Select..." %>
+  </div>
+  <div class="form-group">
+    <%= f.label :app %><br>
+    <%= f.collection_select :app, App.all, :identifier, :key, :class => "form-control", :prompt => "Select..." %>
   </div>
   <div class="form-group">
     <%= f.label :last_access %><br>

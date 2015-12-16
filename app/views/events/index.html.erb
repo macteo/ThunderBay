@@ -1,0 +1,39 @@
+<h1>Listing Events</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Subtype</th>
+      <th>Payload</th>
+      <th>Timestamp</th>
+      <th>Uuid</th>
+      <th>User</th>
+      <th>App</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.type %></td>
+        <td><%= event.subtype %></td>
+        <td><%= event.payload %></td>
+        <td><%= event.timestamp %></td>
+        <td><%= event.uuid %></td>
+        <td><%= event.user ? event.user.email : "" %></td>
+        <td><%= event.app ? event.app.key : "" %></td>
+        <td>
+          <%= link_to 'Show', event, class: "btn btn-default" %>
+          <%= link_to 'Edit', edit_event_path(event), class: "btn btn-default" %>
+          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event', new_event_path %>

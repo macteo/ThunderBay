@@ -1,5 +1,5 @@
-source 'https://rubygems.org'
-ruby '2.2.3'
+source 'http://rubygems.org'
+# ruby '2.2.3'
 gem 'rails', '4.2.5'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -12,6 +12,9 @@ gem 'puma'
 gem 'haml'
 gem 'houston'
 gem 'sidekiq'
+gem 'devise'
+gem 'carrierwave'
+gem 'carrierwave-base64'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
@@ -19,6 +22,7 @@ group :development, :test do
 end
 gem 'bootstrap-sass'
 gem 'high_voltage'
+gem 'websocket-rails'
 group :development do
   gem 'better_errors'
   gem 'quiet_assets'

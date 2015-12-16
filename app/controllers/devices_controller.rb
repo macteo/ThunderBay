@@ -5,7 +5,7 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   def index
-    @devices = Device.all
+    @devices = Device.all.order('last_access DESC')
   end
 
   # GET /devices/1
@@ -41,13 +41,20 @@ class DevicesController < ApplicationController
     @device = Device.where(:identifier => params[:device][:identifier], :token => params[:device][:token], :app_id => app_id).first
     if @device
       @device.update(device_params)
-    else 
+    else
       @device = Device.new(device_params)
     end
-    
+
+    if !params[:user].blank?
+      @user = User.where(:token => params[:user]).first
+      if @user
+        @device.user_id = @user.id
+      end
+    end
+
     @device.app_id = app_id
     @device.last_access = Time.new
-    
+
     respond_to do |format|
       if @device.save
         format.json { render :show, status: :created, location: @device }
@@ -91,6 +98,6 @@ class DevicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def device_params
-      params.require(:device).permit(:identifier, :token, :app_id, :last_access, :lat, :lon, :locale, :name)
+      params.require(:device).permit(:identifier, :token, :app_id, :last_access, :lat, :lon, :locale, :name, :user)
     end
 end

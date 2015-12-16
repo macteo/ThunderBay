@@ -1,0 +1,29 @@
+<h1>Listing Items</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Venue</th>
+      <th>Title</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.venue_id ? item.venue.name : "" %></td>
+        <td><%= item.title %></td>
+        <td>
+          <%= link_to 'Show', item, class: "btn btn-default" %>
+          <%= link_to 'Edit', edit_item_path(item), class: "btn btn-default" %>
+          <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item', new_item_path %>

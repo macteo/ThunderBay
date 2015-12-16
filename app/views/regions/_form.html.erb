@@ -1,0 +1,108 @@
+<%= form_for(@region) do |f| %>
+  <% if @region.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@region.errors.count, "error") %> prohibited this region from being saved:</h2>
+
+      <ul>
+      <% @region.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :venue_id %><br>
+    <%= f.collection_select :venue_id, Venue.all, :id, :name, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :identifier %><br>
+    <%= f.text_field :identifier, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :type %><br>
+    <%= f.select :type, Region.types.to_a.map { |w,t| [w.humanize, w] } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :main %><br>
+    <%= f.check_box :main, :class => "form-control" %>
+  </div>
+  <div class="form-group" id="behavior-group">
+    <%= f.label :behavior %><br>
+    <%= f.select :behavior, Region.behaviors.to_a.map { |w,t| [w.humanize, w] } %>
+  </div>
+  <div class="form-group" id="uuid-group">
+    <%= f.label :uuid %><br>
+    <%= f.text_field :uuid, :class => "form-control" %>
+  </div>
+  <div class="form-group" id="major-group">
+    <%= f.label :major %><br>
+    <%= f.number_field :major, :class => "form-control" %>
+  </div>
+  <div class="form-group" id="minor-group">
+    <%= f.label :minor %><br>
+    <%= f.number_field :minor, :class => "form-control" %>
+  </div>
+  <div class="form-group" id="lat-group">
+    <%= f.label :lat %><br>
+    <%= f.text_field :lat, :class => "form-control" %>
+  </div>
+  <div class="form-group" id="lon-group">
+    <%= f.label :lon %><br>
+    <%= f.text_field :lon, :class => "form-control" %>
+  </div>
+  <div class="form-group" id="radius-group">
+    <%= f.label :radius %><br>
+    <%= f.text_field :radius, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :note %><br>
+    <%= f.text_area :note, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :enter_trigger_id %><br>
+    <%= f.collection_select :enter_trigger_id, Trigger.all, :id, :name, :class => "form-control", prompt: 'Select...' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :exit_trigger_id %><br>
+    <%= f.collection_select :exit_trigger_id, Trigger.all, :id, :name, :class => "form-control", prompt: 'Select...' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :range_trigger_id %><br>
+    <%= f.collection_select :range_trigger_id, Trigger.all, :id, :name, :class => "form-control", prompt: 'Select...' %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Save', :class => "btn btn-primary" %>
+  </div>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+    showFormFields($('#region_type').val());
+    $('#region_type').on('change', function() {
+      showFormFields(this.value);
+    });
+  });
+
+  function showFormFields(value){
+    if (value == 'Geofence') {
+      $('div#behavior-group').hide();
+      $('div#uuid-group').hide();
+      $('div#major-group').hide();
+      $('div#minor-group').hide();
+      $('div#lat-group').show();
+      $('div#lon-group').show();
+      $('div#radius-group').show();
+    } else {
+      $('div#uuid-group').show();
+      $('div#major-group').show();
+      $('div#minor-group').show();
+      $('div#behavior-group').show();
+      $('div#lat-group').hide();
+      $('div#lon-group').hide();
+      $('div#radius-group').hide();
+    }
+  }
+</script>

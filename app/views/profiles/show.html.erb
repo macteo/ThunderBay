@@ -1,0 +1,27 @@
+<p>
+  <strong>User:</strong>
+  <%= @profile.user_id %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @profile.venue_id %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @profile.role %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @profile.note %>
+</p>
+
+<p>
+  <strong>Inside:</strong>
+  <%= @profile.inside ? "Yes" : "No" %>
+</p>
+
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', profiles_path %>

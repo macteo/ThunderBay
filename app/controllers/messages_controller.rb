@@ -1,11 +1,11 @@
 class MessagesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :set_message, only: [:show, :edit, :update, :destroy, :red, :received]
-  
+
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    @messages = Message.all.order('id DESC').limit(50)
   end
 
   # GET /messages/1
@@ -64,7 +64,7 @@ class MessagesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def red
     @message.red = true
     respond_to do |format|
@@ -77,7 +77,7 @@ class MessagesController < ApplicationController
       end
     end
   end
-  
+
   def received
     @message.received = true
     respond_to do |format|
@@ -99,6 +99,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:receiver_id, :sender_id, :category, :title, :question, :reply, :deleted, :sent, :received, :red, :badge, :url, :sound)
+      params.require(:message).permit(:receiver_id, :sender_id, :category, :title, :question, :reply, :deleted, :sent, :received, :red, :badge, :url, :sound, :payload, :content_available, :category)
     end
 end

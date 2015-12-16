@@ -1,0 +1,31 @@
+<h1>Listing Profiles</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Venue</th>
+      <th>User</th>
+      <th>Role</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <tr>
+        <td><%= profile.venue.name %></td>
+        <td><%= profile.user.email %></td>
+        <td><%= profile.role.humanize %></td>
+        <td>
+          <%= link_to 'Show', profile, class: "btn btn-default" %>
+          <%= link_to 'Edit', edit_profile_path(profile), class: "btn btn-default" %>
+          <%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Profile', new_profile_path %>

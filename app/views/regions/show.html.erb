@@ -1,0 +1,57 @@
+<p>
+  <strong>Identifier:</strong>
+  <%= @region.identifier %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @region.type %>
+</p>
+
+<p>
+  <strong>Main:</strong>
+  <%= @region.main ? "Yes" : "No" %>
+</p>
+
+<p>
+  <strong>Uuid:</strong>
+  <%= @region.uuid %>
+</p>
+
+<p>
+  <strong>Major:</strong>
+  <%= @region.major %>
+</p>
+
+<p>
+  <strong>Minor:</strong>
+  <%= @region.minor %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @region.lat %>
+</p>
+
+<p>
+  <strong>Lon:</strong>
+  <%= @region.lon %>
+</p>
+
+<p>
+  <strong>Radius:</strong>
+  <%= @region.radius %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @region.venue ? @region.venue.name : "" %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @region.note %>
+</p>
+
+<%= link_to 'Edit', edit_region_path(@region) %> |
+<%= link_to 'Back', regions_path %>

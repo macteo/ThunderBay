@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Identifier:</strong>
   <%= @device.identifier %>
@@ -12,7 +10,12 @@
 
 <p>
   <strong>App:</strong>
-  <%= @device.app_id %>
+  <%= @device.app_id ? @device.app.key : "" %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @device.user_id ? @device.user.email : "" %>
 </p>
 
 <p>
