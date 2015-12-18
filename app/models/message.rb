@@ -3,16 +3,13 @@ require 'houston'
 class Message < ActiveRecord::Base
   belongs_to :device, :foreign_key => "receiver_id"
 
-  after_commit :schedule_push
+  after_commit :schedule_push, if: Proc.new { |message| message.sent != true }
 
   def schedule_push
     PushWorker.perform_async(self.id, 1)
   end
 
   def send_push
-    if self.sent == true
-      return
-    end
     if self.device.app.sandbox
       apn = Houston::Client.development
     else
