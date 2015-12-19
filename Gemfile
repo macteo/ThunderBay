@@ -15,6 +15,7 @@ gem 'sidekiq'
 gem 'devise'
 gem 'carrierwave'
 gem 'carrierwave-base64'
+gem 'fog-aws'
 gem 'sidekiq'
 group :development, :test do
   gem 'byebug'
