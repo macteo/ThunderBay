@@ -1,4 +1,4 @@
-if Rails.env.production?
+if !ENV['AWS_ID'].blank?
   CarrierWave.configure do |config|
     # config.fog_provider = 'fog/aws'
     config.fog_credentials = {
