@@ -439,19 +439,19 @@
     </object>
     <object type="LMREQUEST" id="z141">
         <attribute name="uuid" type="string">71B772E6-4689-4AEF-9DB8-B30F6CC49E7C</attribute>
-        <attribute name="url" type="string">http://127.0.0.1:3000/events.json</attribute>
+        <attribute name="url" type="string">http://localhost:3000/events.json</attribute>
         <attribute name="storecookies" type="bool">0</attribute>
         <attribute name="sendcookies" type="bool">0</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"json":"{\\"event\\":{\\"type\\":\\"region\\",\\"subtype\\":\\"enter\\",\\"uuid\\":\\"[{\\\\\\"data\\\\\\":{},\\\\\\"identifier\\\\\\":\\\\\\"com.hskrasek.PawExtensions.RandomUuidValue\\\\\\"}]\\",\\"user\\":\\"7f3dc90c30f0430b2937e517f17857a1\\",\\"region\\":\\"DICONos\\",\\"app\\":\\"it.dimension.proximity\\",\\"timestamp\\":1450017192,\\"payload\\":{\\"key\\":\\"val\\"}}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"event\\":{\\"type\\":\\"region\\",\\"subtype\\":\\"enter\\",\\"uuid\\":\\"[{\\\\\\"data\\\\\\":{},\\\\\\"identifier\\\\\\":\\\\\\"com.hskrasek.PawExtensions.RandomUuidValue\\\\\\"}]\\",\\"user\\":\\"7f3dc90c30f0430b2937e517f17857a1\\",\\"region\\":\\"Via Diaz Geofence esterna\\",\\"app\\":\\"it.dimension.proximity\\",\\"timestamp\\":\\"[{\\\\\\"data\\\\\\":{\\\\\\"format\\\\\\":1,\\\\\\"customFormat\\\\\\":[],\\\\\\"now\\\\\\":true,\\\\\\"useTSeparator\\\\\\":1,\\\\\\"date\\\\\\":1450687045.862,\\\\\\"delta\\\\\\":0,\\\\\\"useZForUTC\\\\\\":0},\\\\\\"identifier\\\\\\":\\\\\\"com.luckymarmot.TimestampDynamicValue\\\\\\"}]\\",\\"payload\\":{\\"key\\":\\"val\\"}}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">1</attribute>
         <attribute name="name" type="string">new enter event</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z140"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z142 z139"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z139 z142"></relationship>
     </object>
     <object type="LMKEYVALUE" id="z142">
         <attribute name="value" type="string"></attribute>
@@ -580,14 +580,14 @@
     </object>
     <object type="LMREQUEST" id="z153">
         <attribute name="uuid" type="string">ACDC29A7-D113-4368-866A-BE2478F9883F</attribute>
-        <attribute name="url" type="string">http://127.0.0.1:3000/events.json</attribute>
+        <attribute name="url" type="string">http://thunderbay.herokuapp.com/events.json</attribute>
         <attribute name="storecookies" type="bool">0</attribute>
         <attribute name="sendcookies" type="bool">0</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"json":"{\\"event\\":{\\"type\\":\\"region\\",\\"subtype\\":\\"exit\\",\\"uuid\\":\\"[{\\\\\\"data\\\\\\":{},\\\\\\"identifier\\\\\\":\\\\\\"com.hskrasek.PawExtensions.RandomUuidValue\\\\\\"}]\\",\\"user\\":\\"jhgjhgv\\",\\"region\\":\\"centro citt\\\\u00e0\\",\\"app\\":\\"it.dimension.fashion\\",\\"timestamp\\":1450017192,\\"venue_id\\":1,\\"payload\\":{\\"key\\":\\"val\\"}}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"event\\":{\\"type\\":\\"region\\",\\"subtype\\":\\"exit\\",\\"uuid\\":\\"[{\\\\\\"data\\\\\\":{},\\\\\\"identifier\\\\\\":\\\\\\"com.hskrasek.PawExtensions.RandomUuidValue\\\\\\"}]\\",\\"user\\":\\"93fb2dc0aa90876d8d116f5279e3abe4\\",\\"region\\":\\"Via Diaz Geofence esterna\\",\\"app\\":\\"it.dimension.proximity\\",\\"timestamp\\":1450017192,\\"payload\\":{\\"key\\":\\"val\\"}}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">2</attribute>
         <attribute name="name" type="string">new exit event</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z140"></relationship>

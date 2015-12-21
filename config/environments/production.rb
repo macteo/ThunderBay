@@ -79,3 +79,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
+
+EVENTS_DOMAIN = ENV['APP_DOMAIN']
+WEBSOCKET_URL = "#{EVENTS_DOMAIN}/websocket"
+EVENTS_BASE_URL = "https://#{EVENTS_DOMAIN}"

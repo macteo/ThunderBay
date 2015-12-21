@@ -69,7 +69,7 @@ class Event < ActiveRecord::Base
 
   def broadcast_event
     # Fiber.new{  }.resume
-    WebsocketRails[channel_name].trigger("new_event", socket_object)
+    WebsocketRails['events_channel'].trigger("new_event", socket_object)
   end
 
   def prettyPayload

@@ -40,5 +40,12 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  # config.middleware.delete Rack::Lock
+  # This will cause crashes, however is needed fro railswebsocket to work
+  config.middleware.delete Rack::Lock
 end
+
+EVENTS_DOMAIN = '127.0.0.1'
+WEB_PORT = '3000'
+WEBSOCKET_PORT = '3010'
+WEBSOCKET_URL = "#{EVENTS_DOMAIN}:#{WEBSOCKET_PORT}/websocket"
+EVENTS_BASE_URL = "http://#{EVENTS_DOMAIN}:#{WEB_PORT}"

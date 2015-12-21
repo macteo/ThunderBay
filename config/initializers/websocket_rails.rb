@@ -6,24 +6,27 @@ WebsocketRails.setup do |config|
   # config.log_level = :debug
 
   # Uncomment to change the default log file path.
-  # config.log_path = "#{Rails.root}/log/websocket_rails.log"
+  config.log_path = "#{Rails.root}/log/websocket_rails.log"
 
   # Set to true if you wish to log the internal websocket_rails events
   # such as the keepalive `websocket_rails.ping` event.
-  # config.log_internal_events = false
+  config.log_internal_events = true
 
   # Change to true to enable standalone server mode
   # Start the standalone server with rake websocket_rails:start_server
   # * Requires Redis
-  config.standalone = false
-  config.standalone_port = 3010
-  
-  # Change to true to enable channel synchronization between
-  # multiple server instances.
-  # * Requires Redis.
-  config.synchronize = false
+  if Rails.env == "production"
+      config.standalone = false
+      config.synchronize = false
+      config.redis_options = {:url => ENV['REDIS_URL']}
+  else
+     config.standalone = true
+     config.synchronize = true
+     config.standalone_port = 3010
+     config.redis_options = {:host => 'localhost', :port => '6379'}
+  end
 
-  config.redis_options = {:url => ENV['REDIS_URL']}
+  # config.redis_options = {:url => ENV['REDIS_URL']}
 
   # Prevent Thin from daemonizing (default is true)
   # config.daemonize = false
@@ -44,7 +47,7 @@ WebsocketRails.setup do |config|
   # notified when other clients join and part the channel. If you are
   # using the UserManager, the current_user object will be sent along
   # with the event.
-  # config.broadcast_subscriber_events = true
+  config.broadcast_subscriber_events = false
 
   # Used as the key for the WebsocketRails.users Hash. This method
   # will be called on the `current_user` object in your controller
