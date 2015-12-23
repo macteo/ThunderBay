@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
   after_create :broadcast_event
 
   def fixed_timestamp
-    return self.timestamp.strftime("%Y-%m-%d\T%H:%M:%S%:z")
+    return self.timestamp.to_i
   end
 
   def user=(u)
