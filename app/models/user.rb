@@ -41,8 +41,9 @@ class User < ActiveRecord::Base
     self.devices.each do |device|
       # TODO: need to send a nested object with the user informations
       jsonProfile = profile.attributes
-      jsonProfile["user"] = self
-      logger.info "--------- #{jsonProfile}"
+      if !profile.user_id.blank?
+        jsonProfile["user"] = profile.user
+      end
       Message.create(:receiver_id => device.id, :payload => "{\"inside_status_change\":#{jsonProfile.to_json}}", :content_available => 1)
     end
   end
