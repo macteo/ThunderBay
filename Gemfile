@@ -24,6 +24,10 @@ group :development, :test do
 end
 gem 'bootstrap-sass'
 gem 'high_voltage'
+gem 'redis'
+gem 'hiredis'
+gem 'em-synchrony'
+gem 'faye-websocket', '0.10.0'
 gem 'websocket-rails'
 group :development do
   gem 'better_errors'

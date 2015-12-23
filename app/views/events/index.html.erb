@@ -7,7 +7,6 @@
       <th>Subtype</th>
       <th>Payload</th>
       <th>Timestamp</th>
-      <th>Uuid</th>
       <th>User</th>
       <th>App</th>
       <th></th>
@@ -21,7 +20,6 @@
         <td><%= event.subtype %></td>
         <td><%= event.payload %></td>
         <td><%= event.timestamp %></td>
-        <td><%= event.uuid %></td>
         <td><%= event.user ? event.user.email : "" %></td>
         <td><%= event.app ? event.app.key : "" %></td>
         <td>
@@ -40,23 +38,22 @@
 
 <script>
   var dispatcher = new WebSocketRails('<%= WEBSOCKET_URL %>');
-  // console.log(dispatcher);
+  console.log(dispatcher);
   dispatcher.on_open = function(data) {
     console.log('Connection has been established: ', data);
   }
   var channel = dispatcher.subscribe('events_channel');
   channel.bind('new_event', function(data) {
-    console.log('channel event received: ' + data["type"]);
+    console.log('channel event received: ' + JSON.stringify(data));
     var table = document.getElementById("events_table");
-    var row = table.insertRow(0);
+    var row = table.insertRow(1);
     var tdType = row.insertCell(0);
     var tdSubtype = row.insertCell(1);
     var tdPayload = row.insertCell(2);
     var tdTimestamp = row.insertCell(3);
-    var tdUuid = row.insertCell(4);
-    var tdUser = row.insertCell(5);
-    var tdApp = row.insertCell(6);
-    var tdShow = row.insertCell(7);
+    var tdUser = row.insertCell(4);
+    var tdApp = row.insertCell(5);
+    var tdShow = row.insertCell(6);
     tdType.innerHTML = data["type"];
     tdSubtype.innerHTML = data["subtype"];
     var payload = JSON.stringify(data["payload"]);
@@ -64,10 +61,9 @@
       tdPayload.innerHTML = payload;
     }
     tdTimestamp.innerHTML = timeConverter(data["timestamp"]);
-    tdUuid.innerHTML = data["uuid"];
     tdUser.innerHTML = data["user"];
     tdApp.innerHTML = data["app"];
-    tdShow.innerHTML = '<a href="/events/' + data["id"] + '">Show</a>';
+    tdShow.innerHTML = '<a class="btn btn-default" href="/events/' + data["id"] + '">Show</a> <a class="btn btn-default" href="/events/' + data["id"] + '/edit">Edit</a> <a data-confirm="Are you sure?" class="btn btn-danger" rel="nofollow" data-method="delete" href="/events/' + data["id"] + '">Destroy</a>';
   });
 
   function timeConverter(UNIX_timestamp){
