@@ -87,10 +87,10 @@ class Event < ActiveRecord::Base
   def socket_object
     hash = self.attributes
     hash["timestamp"] = self.timestamp.to_i
-    if !self.user.email.blank?
+    if self.user && !self.user.email.blank?
       hash["user"] = self.user.email
     end
-    if !self.app.key.blank?
+    if self.app && !self.app.key.blank?
       hash["app"] = self.app.key
     end
     if !payload.blank?
