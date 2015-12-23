@@ -19,6 +19,10 @@ class Event < ActiveRecord::Base
 
   after_create :broadcast_event
 
+  def fixed_timestamp
+    return self.timestamp.strftime("%Y-%m-%d\T%H:%M:%S%:z")
+  end
+
   def user=(u)
     user = User.where(:token => u).first
 
