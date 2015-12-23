@@ -39,7 +39,10 @@ class User < ActiveRecord::Base
 
   def send_inside_status_change_notification(profile)
     self.devices.each do |device|
-      Message.create(:receiver_id => device.id, :payload => "{\"inside_status_change\":#{profile.to_json}}", :content_available => 1)
+      # TODO: need to send a nested object with the user informations
+      jsonProfile = profile.to_json
+      jsonProfile["user"] = self.to_json
+      Message.create(:receiver_id => device.id, :payload => "{\"inside_status_change\":#{jsonProfile}}", :content_available => 1)
     end
   end
 end
