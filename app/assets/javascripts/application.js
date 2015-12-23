@@ -10,9 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require websocket_rails/main
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require websocket_rails/main
 //= require_tree .
