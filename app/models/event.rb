@@ -15,6 +15,8 @@ class Event < ActiveRecord::Base
 
   after_create :update_inside_status, if: Proc.new { |event| event.region_id && event.user_id && event.type == "region" && event.region.main == true }
 
+  after_create :broadcast_profile_event, if: Proc.new { |event| event.user_id }
+
   after_create :broadcast_event
 
   def user=(u)
@@ -68,8 +70,19 @@ class Event < ActiveRecord::Base
   end
 
   def broadcast_event
-    # Fiber.new{  }.resume
     WebsocketRails['events_channel'].trigger("new_event", socket_object)
+  end
+
+  def broadcast_profile_event
+    if !self.region.blank?
+      venue = Venue.find(self.region.venue_id)
+      if venue
+        profile = self.user.profiles.where(:venue_id => venue.id).first
+        if profile
+          WebsocketRails["profile:#{profile.id}"].trigger("new_event", socket_object)
+        end
+      end
+    end
   end
 
   def prettyPayload
@@ -92,6 +105,9 @@ class Event < ActiveRecord::Base
     end
     if self.app && !self.app.key.blank?
       hash["app"] = self.app.key
+    end
+    if self.region
+      hash["region"] = self.region.identifier
     end
     if !payload.blank?
       begin
