@@ -78,7 +78,7 @@ class Event < ActiveRecord::Base
   end
 
   def broadcast_profile_event
-    if !self.region.blank?
+    if self.region
       venue = Venue.find(self.region.venue_id)
       if venue
         profile = self.user.profiles.where(:venue_id => venue.id).first

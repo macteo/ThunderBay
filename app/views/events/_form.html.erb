@@ -41,11 +41,11 @@
   </div>
   <div class="form-group">
     <%= f.label :region_id %><br>
-    <%= f.collection_select :region_id, Region.all, :id, :name, :class => "form-control", prompt: 'Select...' %>
+    <%= f.collection_select :region_id, Region.all, :id, :identifier, :class => "form-control", prompt: 'Select...' %>
   </div>
   <div class="form-group">
     <%= f.label :venue_id %><br>
-    <%= f.collection_select :venue_id, Region.all, :id, :name, :class => "form-control", prompt: 'Select...' %>
+    <%= f.collection_select :venue_id, Venue.all, :id, :name, :class => "form-control", prompt: 'Select...' %>
   </div>
   <div class="form-group">
     <%= f.label :attachment %><br>
