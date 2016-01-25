@@ -83,9 +83,16 @@ class Event < ActiveRecord::Base
       if venue
         profile = self.user.profiles.where(:venue_id => venue.id).first
         if profile
+          logger.info "------------- Sending a new event on the websocket"
           WebsocketRails["profile:#{profile.id}"].trigger("new_event", socket_object)
+        else
+          logger.info "------------- Didn't find a profile to send the notification to"
         end
+      else
+        logger.info "------------- Didn't find a venue associated to this region"
       end
+    else
+      logger.info "------------- Didn't find a region associated to this event"
     end
   end
 

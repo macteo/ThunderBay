@@ -28,7 +28,9 @@ gem 'redis'
 gem 'hiredis'
 gem 'em-synchrony'
 gem 'faye-websocket', '0.10.0'
-gem 'websocket-rails'
+# gem 'websocket-rails'
+
+gem 'websocket-rails', github: 'moaa/websocket-rails', branch: 'sync_fixes'
 group :development do
   gem 'better_errors'
   gem 'quiet_assets'
