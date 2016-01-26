@@ -9,5 +9,3 @@ ADD . /thunderbay
 ENV RAILS_ENV production
 EXPOSE 3000
 VOLUME /thunderbay
-RUN bundle exec rake db:migrate
-RUN bundle exec rails s Puma -p 3000 -b '0.0.0.0'
