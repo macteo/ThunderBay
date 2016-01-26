@@ -84,8 +84,9 @@ class Event < ActiveRecord::Base
         profile = self.user.profiles.where(:venue_id => venue.id).first
         if profile
           logger.info "------------- Sending a new event on the websocket '[profile-#{profile.id}]'"
-          logger.info "#{socket_object}"
-          WebsocketRails["profile-#{profile.id}"].trigger("new_event", socket_object)
+          logger.info "------------- Object #{small_socket_object}"
+          WebsocketRails["profile-#{profile.id}"].trigger("new_event", small_socket_object)
+          logger.info "------------- Sent Object"
         else
           logger.info "------------- Didn't find a profile to send the notification to"
         end
@@ -127,6 +128,14 @@ class Event < ActiveRecord::Base
       rescue Exception => e
       end
     end
+    return hash
+  end
+
+  def small_socket_object
+    hash = Hash.new
+    hash["timestamp"] = self.timestamp.to_i
+    hash["type"] = self.type
+    hash["subtype"] = self.subtype
     return hash
   end
 end
