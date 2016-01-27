@@ -1,5 +1,7 @@
 db:
   image: postgres
+redis:
+  image: redis
 web:
   build: .
   command: bundle exec rails s Puma -p 3000 -b '0.0.0.0'
@@ -9,3 +11,12 @@ web:
     - "3000:3000"
   links:
     - db
+    - redis
+sidekiq:
+  build: .
+  volumes:
+    - .:/thunderbay
+  links:
+    - db
+    - redis
+  command: bundle exec sidekiq -c 5 -v -C config/sidekiq.yml

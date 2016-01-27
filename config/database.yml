@@ -1,10 +1,12 @@
 default: &default
   adapter: postgresql
-  encoding: unicode # utf8
   pool: 5 # <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 16 %>
-  database: postgres #"thunderbay"
-  username: postgres
   password:
+  # database: thunderbay
+  # encoding: utf8
+  database: postgres
+  username: postgres
+  encoding: unicode
   host: db
 
 development:
