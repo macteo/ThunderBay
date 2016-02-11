@@ -9,16 +9,12 @@ web:
     - redis
   ports:
     - "80:3000"
-  volumes:
-    - .:/thunderbay
   environment:
     SECRET_KEY_BASE: 100ff202ff107851d657a68b3f8366cb9388ba2cd2aa7d2f3147bbb9d06b31ff7fc6bd8c23ea3a93bc3fbe847837c6e9bb17d88dc6ad1ddfd69acea0777f5282
   command: bundle exec rails s Puma -p 3000 -b '0.0.0.0'
 sidekiq:
   image: macteo/thunderbay
-  volumes:
-    - .:/thunderbay
   links:
     - db
     - redis
-  command: bundle exec sidekiq -c 5 -v -C config/sidekiq.yml
+  command: bundle exec sidekiq -c 5 -v
